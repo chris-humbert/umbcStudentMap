@@ -1,0 +1,149 @@
+"""
+    def dijkstras(self, start_node: str):
+        pq = []
+        heapq.heappush(pq, (0, start_node))
+
+        # creates a vector of all the distances
+        for i in self.adjacency_list:
+            self.distances.update({i: float('inf')})
+
+        self.distances[start_node] = 0
+
+        while pq:
+            d, u = heapq.heappop(pq)
+
+            # min_dist = 999.99
+            for v in self.adjacency_list[u].connections:
+                print(f"AAAAAAAAAAAAAAAAAAA this is {v},  {self.adjacency_list[u].connections[v]}")
+                weight = self.adjacency_list[u].connections[v]
+
+                if self.distances[v] > self.distances[u] + weight:
+
+                    # fiX THIS LATER SHOULD APPEND AND SHOW PATH IDK WHAT IT IS
+                    self.followed_path[v].append(u)
+                    self.distances[v] = self.distances[u] + weight
+                    heapq.heappush(pq, (self.distances[v], v))
+                # if self.adjacency_list[u].connections[v] < min_dist:
+                #     min_dist = self.adjacency_list[u].connections[v]
+
+                #     min_dist = self.adjacency_list[u].connections
+
+        for i in self.distances:
+            print(f"{i} \t\t {self.distances[i]}")
+            for j in self.followed_path[i]:
+                print(f"\t\t {self.followed_path[i]}")
+
+    """
+
+"""
+class campusMap:
+    def __init__(self):
+        self.locations = {}
+        self.paths = {}
+        self.distance = {}
+        self.all_locations = []
+
+    def addLocation(self, name, long, lat):
+        # Adds name to list for easy lookup
+        self.all_locations.append(name)
+
+        place = location(name, lat, long)
+
+        self.locations.update({f"{name}": place})
+
+        self.paths[name] = []
+
+    def addPath(self, start, end):
+        # Calculates heuristic
+        # distance = heuristic(self.locations[start], self.locations[end])
+        lat_start = float(self.locations[start].lat)
+        long_start = float(self.locations[start].long)
+        lat_end = float(self.locations[end].lat)
+        long_end = float(self.locations[end].long)
+
+        distance = np.arccos(np.sin(lat_start) * np.sin(lat_end) + np.cos(lat_start) * np.cos(lat_end) * np.cos(long_end - long_start)) * 6371
+
+        print(lat_start)
+
+
+
+        self.paths[start].append({end: distance})
+        self.paths[end].append({start: distance})
+        # self.distance[start, end] = distance
+        # self.distance[end, start] = distance
+
+
+    def shortestPath(self, start, end):
+
+        for i in self.paths[start]:
+            print(i)
+
+
+        # pq = []
+        # hq.heappush(pq, (0, start))
+        #
+        # dist = [float("inf")]
+        # dist[start] = 0
+
+
+def heuristic(loc1, loc2):
+    # returns the distance calculated by comparing long and lat
+    return np.arccos(np.sin(loc1.lat) * np.sin(loc2.lat) + np.cos(loc1.lat) * np.cos(loc2.lat) * np.cos(loc2.long - loc1.long)) * 6371
+"""
+
+
+
+
+
+
+
+
+
+"""
+def popMap():
+    umbcMap = campusMap()
+
+    # Attempts to add all locations to the map
+    try:
+        file = open('campus.txt', 'r')
+        cont = True
+        while(cont):
+            lines = file.readline().strip().split(',')
+            if(len(lines) == 3):
+                print(lines)
+                umbcMap.addLocation(lines[0], lines[1], lines[2])
+            elif(len(lines) != 3):
+                cont = False
+        file.close()
+
+    except FileNotFoundError:
+        print("Error: couldn't find campus.txt")
+        return
+
+    # Adds all connections to map
+    try:
+        file = open('connections.txt', 'r')
+        line = file.readline()
+        cont = True
+        while (cont):
+            lines = file.readline().strip().split(',')
+            print(lines)
+            # Checks to see that both are valid locations and only 2
+            if len(lines) == 2 and lines[0] in umbcMap.all_locations and lines[1] in umbcMap.all_locations:
+                if len(lines) == 2:
+                    umbcMap.addPath(lines[0], lines[1])
+            elif len(lines) != 2:
+                print("hi")
+                cont = False
+
+
+        file.close()
+
+    except FileNotFoundError:
+        print("Error: couldn't find connections.txt")
+        return
+
+    # Returns the finished map
+    return umbcMap
+"""
+

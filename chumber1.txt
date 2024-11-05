@@ -1,0 +1,13 @@
+Name:
+    Chris Humbert
+Major:
+    Computer Science
+CampusID:
+    chumber1/IJ71570
+On-Campus Living:
+    Yes
+    Harbor Hall
+Classes:
+
+    Class Section | Class Name | Teacher | Days | Time | Location
+    CMSC 421| Principles of Operating Systems| Sanaa Mironov| Mon,Wed| 10:00AM-11:15AM | Math & Psych 103

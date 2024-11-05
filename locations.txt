@@ -1,0 +1,10 @@
+Harbor Hall
+Chesapeake Hall
+Susquehanna Hall
+Potomec Hall
+Patapso Hall
+True Grit's
+Harbor Hall:Chesapeake Hall:3
+Chesapeake Hall:Patapso Hall:5
+Patapso Hall:True Grit's:1
+Harbor Hall:True Grit's:2

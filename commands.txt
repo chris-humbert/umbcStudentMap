@@ -1,0 +1,8 @@
+Commands:
+    1: Input Student Schedule
+    2. Choose Trackee
+    3: Open Map (with and without schedule inputted)
+    4: Run Time Simulation (with and without map)
+    5. Ask AI Questions about Schedule
+    6. Quit
+    7. Remove a file / check for file
